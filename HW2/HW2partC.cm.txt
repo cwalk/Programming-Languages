@@ -1,0 +1,83 @@
+// Clayton Walker
+// Programming Languages COP 4020
+// Assignment 2 Part C
+// Due: 2/14/14
+//Case3:  A fair solution where both, Readers are Writers, have approximately the same priority
+
+monitor ReaderWriters {
+	int readerCount=0;
+	int busy = 0;
+	int swap=1;
+	condition OKtoRead, OKtoWrite;
+
+	void StartRead(int count){
+
+		if (busy)						// if database is not free, block
+			waitc(OKtoRead); 
+		readerCount = readerCount+1;	// increment reader readerCount
+		cout << "Reader " << count << " enters the critical section" << endl;
+		signalc(OKtoRead);
+	}
+
+	void EndRead(int count){
+
+		readerCount = readerCount-1;	// decrement reader readerCount
+		cout << "Reader " << count << " leaves the critical section" << endl;
+		if (readerCount == 0)
+			signalc(OKtoWrite);
+	}
+
+	void StartWrite(int count){
+
+		if ( busy || readerCount != 0 )
+			waitc(OKtoWrite);
+		busy = 1;
+		cout << "Writer " << count << " enters the critical section" << endl;
+	} 
+
+	void EndWrite(int count){
+	
+		busy = 0;
+		cout << "Writer " << count << " leaves the critical section" << endl;
+		
+		if(swap) {
+			
+			if (empty(OKtoRead)==0)
+				signalc(OKtoRead); 		//*originally read
+			else
+				signalc(OKtoWrite);			//*originally write
+		}
+		else {
+			if (empty(OKtoWrite)==0)
+				signalc(OKtoWrite); 		//*originally read
+			else
+				signalc(OKtoRead);			//*originally write
+		}
+	}
+
+} //end ReadersWriters monitor
+  
+void Reader(int count){
+	int i;
+	for(i=0;i<6;i++){					// loop for 6 readers      
+		StartRead(count);
+		EndRead(count);
+	}
+}
+ 
+void Writer(int count){
+	int i;
+	for(i=0;i<3;i++){				// loop for 4 writers
+		StartWrite(count);
+		EndWrite(count);
+	}
+}
+
+main() {  
+
+	cobegin {
+		Reader(1); Reader(2); Reader(3); Reader(4); Reader(5); Reader(6);
+		Writer(1); Writer(2); Writer(3); Writer(4);
+	}
+	cout << "Main program finishing, Readers and Writers have run to completion." << endl;
+}

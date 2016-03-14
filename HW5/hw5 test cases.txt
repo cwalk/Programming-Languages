@@ -1,0 +1,44 @@
+Clayton Walker
+COP 4020 Spring 2014
+HW5
+Test Case
+
+cd Desktop
+ghci
+:load HW5.hs
+
+listLength [1,2,3,4]
+4
+
+nthElem [1,2,3,7] 3
+7
+
+nthElem [1,2,3,7] 4
+*** Exception: List too short by 1 elements.
+
+removeFirst [1,2,3,4,23] 2
+[1,3,4,23]
+
+subst 1 2 [1,2,2,1]
+[1,1,1,1]
+
+map(subst 1 2) [[1..3],[1..3],[1..10]]
+[[1,1,3],[1,1,3],[1,1,3,4,5,6,7,8,9,10]]
+
+subst [2] [1] ([[1],[2],[4]])
+[[2],[2],[4]]
+
+subst 'a' 'b' "abba"
+"aaaa"
+
+listSum[1..10]
+55
+
+duple 10 8
+[8,8,8,8,8,8,8,8,8,8]
+
+sortPred (>) [1,10,2,9,3,8,4,7,5,6]
+[10,9,8,7,6,5,4,3,2,1]
+
+sortPred (<) [1,10,2,9,3,8,4,7,5,6]
+[1,2,3,4,5,6,7,8,9,10]

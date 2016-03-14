@@ -1,0 +1,73 @@
+// Clayton Walker
+// Programming Languages COP 4020
+// Assignment 1 Part B
+// Due: 2/2/14
+
+semaphore full=5; 	//Initializes our buffer to 5
+semaphore Empty=0;	//Initializes empty semaphore
+binarysem mutex=1;	//Initializes mutex for output
+binarysem output=1; 	//Initializes general mutex for consumers
+binarysem flag=1;	//Initializes flag
+int count;		//Initializes count used for consumers
+
+void producer() {
+	int index;				//index used in loop
+	for (index = 1; index < 101; index++) {	//Loop to generate 100 items
+		p(full);
+		v(Empty);
+		p(output);
+		cout << "Item " << index << " produced" << endl;
+		v(output);
+	}
+}
+
+void consumer1() {
+
+	while(flag) {
+		p(mutex);
+		p(Empty);
+		if (count == 100) break;	//were done so break
+		v(full);			//otherwise keep going
+		count++;			
+		if (count == 100) {		//When the last item consumed,
+			p(flag);		//set flag to notify completion
+			v(Empty);		//signal empty to prevent consumer2 from deadlocking.
+		}		
+		p(output);		
+		cout << "Item " << count << " consumed by C1" << endl;
+		v(output);
+		v(mutex);
+	}	
+}
+
+void consumer2() {
+
+	while(flag) {
+		int delay = 1000;	//Delay for part B
+		while(delay) {
+			delay--;	//This will delay Consumer 2
+		}
+		p(mutex);
+		p(Empty);
+		if (count == 100) break;	//were done so break
+		v(full);			//otherwise keep going
+		count++;
+		if (count == 100) {		//When the last item consumed,
+			p(flag);		//set flag to notify completion
+			v(Empty);		//signal empty to prevent consumer1 from deadlocking.
+		}		
+		p(output);		
+		cout << "Item " << count << " consumed by C2" << endl;
+		v(output);
+		v(mutex);
+	}	
+}
+
+main() {
+	cobegin {		//concurrently run producer and 2 consumer functions
+		producer(); 
+		consumer1(); 
+		consumer2();
+	}
+	cout << "Main program finishing, Producer and Consumers have run to completion." << endl;
+}

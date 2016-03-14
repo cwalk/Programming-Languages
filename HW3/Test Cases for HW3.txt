@@ -1,0 +1,106 @@
+Clayton Walker
+COP 4020-Programming Languages
+HW3
+Due: 3/20/14
+
+Test Cases:
+
+Part A:
+
+(list-length ’(a (b c) d))
+
+gives: 3
+
+(list-length ’(a b c))gives: 3(list-length ’((x) ()))gives: 2
+
+
+
+Part B:
+
+(nth-element ’(a b c d e) 3)
+
+gives: d
+
+(nth-element ’(a b c) 3)
+
+gives: nth-element: List too short by 1 elements.
+
+
+
+Part C:
+
+(remove-first ’a ’(a b c)) 
+
+gives: (b c)(remove-first ’b ’(e f g)) 
+
+gives: (e f g)(remove-first ’a4 ’(c1 a4 c1 a4))
+
+gives: (c1 c1 a4)(remove-first ’x ’())
+
+gives: ()
+
+
+
+Part D:
+
+(occurs-free? ’x ’x)#t(occurs-free? ’x ’y)#f(occurs-free? ’x ’(lambda (x) (x y)))
+#f(occurs-free? ’x ’(lambda (y) (x y)))
+#t
+(occurs-free? ’x ’((lambda (x) x) (x y)))#t(occurs-free? ’x ’(lambda (y) (lambda (z) (x (y z)))))
+#t
+
+
+
+Part E:
+
+(subst ’a ’b ’((b c) (b () d))) 
+
+gives: ((a c) (a () d))
+
+
+
+Part F:
+
+(number-elements-from '(a b c d e f g h i j) '1)
+
+gives: '((1 a) (2 b) (3 c) (4 d) (5 e) (6 f) (7 g) (8 h) (9 i) (10 j))
+
+
+
+Part G:
+
+(list-sum '(1 2 3 4))
+
+gives: 10
+
+
+
+Part H:
+
+(vector-sum #(3 4 5 6))
+
+gives: 18
+
+(vector-sum von)
+
+gives: 270
+
+
+
+Part I:
+
+(duple 2 3)gives: (3 3)(duple 4 ’(ha ha))
+gives: ((ha ha) (ha ha) (ha ha) (ha ha))
+
+(duple 0 ’(blah))gives: ()
+
+
+
+Part J:
+
+(sort/predicate < ‘(8 2 5 2 3)) 
+
+gives: ‘(2 2 3 5 8)
+(sort/predicate > ’(8 2 5 2 3)) 
+
+gives: ‘(8 5 3 2 2)

@@ -1,0 +1,21 @@
+module HW5 where
+
+listLength :: (Ord a) => [a] -> Integer
+
+
+nthElem :: (Ord a) => [a] -> Integer -> a
+
+
+removeFirst :: (Eq a) => [a] -> a -> [a]
+
+
+subst :: (Eq a) => a -> a -> [a] -> [a]
+
+
+listSum :: [Integer] -> Integer
+
+
+duple :: (Num a, Eq a, Ord b) => a -> b -> [b]
+
+--Hint: use a helper function
+sortPred :: (Eq a) => (a -> a -> Bool) -> [a] -> [a] 

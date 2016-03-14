@@ -1,0 +1,34 @@
+Clayton Walker Notes on Readers and Writers
+
+Reader: Writers Monitor
+begin
+Readcount: int;
+busy: boolean;
+OkToRead, OkToWrite:Condition;
+
+Procedure StartRead;
+begin
+if(busy) then OkToRead.wait;
+readCount:=readCount+1;
+OkToRead.signal;
+end
+
+Procedure EndRead;
+begin
+readCount:=readCount-1;
+if(readCount==0) then OkToWrite.signal;
+end
+
+Procedure StartWrite;
+begin
+if(busy) or readCount !=0
+then OkToWrite.wait;
+busy!=True;
+end
+
+Procedure EndWrite;
+begin
+busy:=false;
+if(OkToRead.queue) then OkToRead.signal;
+else OkToWrite.signal;
+end
