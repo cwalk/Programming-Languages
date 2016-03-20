@@ -20,6 +20,8 @@ These programs were written in C--. For more information, check out: http://insi
 
 An assignment description can be read, titled "COP4020.HW3 LISP1.Spring2014.doc", with some test cases "Test Cases for HW3.txt". Another assignment description can be read, titled "COP4020_Spring-2014_HW4_LISP-pt2.pdf"
 
+Racket: https://racket-lang.org
+
 These programs were written in Lisp, and can be run with racket: `COP4020-HW3-Walker-Clayton.rkt` and `COP4020-HW4-Walker-Clayton.rkt`
 
 ## HW5
