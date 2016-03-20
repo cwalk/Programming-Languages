@@ -12,7 +12,7 @@ Download the repository: `git clone https://github.com/cwalk/Programming-Languag
 
 An assignment description can be read, titled "COP4020.HW1 Concurrency.Spring2014.doc" and "COP4020.HW2 Concurrency.Spring2014.doc"
 
-These programs were written in C--. For more information, check out: http://inside.mines.edu/~tcamp/baci/baci_index.html#Syntax
+These programs were written in C--. For more information, check out: http://inside.mines.edu/~tcamp/baci/baci_index.html#Syntax and http://inside.mines.edu/~tcamp/baci/cmimi.pdf
 
 `HW1partA.cm`, `HW1partB.cm`, `HW2partA.cm`, `HW2partB.cm`, and `HW2partC.cm`.
 
