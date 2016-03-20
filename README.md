@@ -32,4 +32,4 @@ This program is written in Haskell: `HW5.hs`
 
 ## YouTube
 
-YouTube: 
+YouTube: https://www.youtube.com/watch?v=bnVHm6WmP5U&list=PLgAD2y-6wgwrEvas17-mxfta9fsfEgO00
